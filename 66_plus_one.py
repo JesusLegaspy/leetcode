@@ -2,24 +2,20 @@ from typing import List
 
 class Solution:
   def plusOne(self, digits: List[int]) -> List[int]:
-    solution = []
 
-    carry = True
-    for digit in reversed(digits):
-      result = digit
-      if carry == True:
-        result = result + 1
-      if result != 10:
-        carry = False
-      else:
-        solution.insert(0,0)
+    for index in range(len(digits) - 1, -1, -1):
+      if (digits[index] == 9):
+        digits[index] = 0
         continue
-      solution.insert(0,result)
-    
-    if (carry == True):
-      solution.insert(0,1)
+      digits[index] = digits[index] + 1
+      return digits
 
-    return solution
+    return [1] + digits
+
+    ## Second approach
+    # result = int("".join([str(digit) for digit in digits])) + 1
+    # return [int(digit) for digit in str(result)]
+
 
 test = Solution()
 print(test.plusOne([1,2,3]))
