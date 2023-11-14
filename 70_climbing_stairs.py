@@ -1,13 +1,14 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        prev = {}
-        prev[1] = 1
-        prev[2] = 2
+        if n == 0 or n == 1:
+            return 1
 
-        for idx in range(3, n + 1):
-            prev[idx] = prev[idx-1] + prev[idx - 2]
+        prev, curr = 1, 1
+        for i in range(2, n + 1):
+            curr = prev + curr
+            prev = curr - prev
 
-        return prev[n]
+        return curr
 
 
 print(Solution().climbStairs(1))
